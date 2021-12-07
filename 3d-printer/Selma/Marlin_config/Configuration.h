@@ -56,7 +56,7 @@
 // #define PS_DEFAULT_OFF
 
 // Define this to have hotbed support
-//#define HEATED_BED_SUPPORT
+#define HEATED_BED_SUPPORT
 
 // The following define selects the stepper profile to use, if enabled printer noise will increase
 // #define PREFER_MAX_SPEED
@@ -103,10 +103,10 @@
 //     #define DUMMY_THERMISTOR_998_VALUE 25
 //     #define DUMMY_THERMISTOR_999_VALUE 100
 // :{ '0': "Not used", '4': "10k !! do not use for a hotend. Bad resolution at high temp. !!", '1': "100k / 4.7k - EPCOS", '51': "100k / 1k - EPCOS", '6': "100k / 4.7k EPCOS - Not as accurate as Table 1", '5': "100K / 4.7k - ATC Semitec 104GT-2 (Used in ParCan & J-Head)", '7': "100k / 4.7k Honeywell 135-104LAG-J01", '71': "100k / 4.7k Honeywell 135-104LAF-J01", '8': "100k / 4.7k 0603 SMD Vishay NTCS0603E3104FXT", '9': "100k / 4.7k GE Sensing AL03006-58.2K-97-G1", '10': "100k / 4.7k RS 198-961", '11': "100k / 4.7k beta 3950 1%", '12': "100k / 4.7k 0603 SMD Vishay NTCS0603E3104FXT (calibrated for Makibox hot bed)", '13': "100k Hisens 3950  1% up to 300°C for hotend 'Simple ONE ' & hotend 'All In ONE'", '60': "100k Maker's Tool Works Kapton Bed Thermistor beta=3950", '55': "100k / 1k - ATC Semitec 104GT-2 (Used in ParCan & J-Head)", '2': "200k / 4.7k - ATC Semitec 204GT-2", '52': "200k / 1k - ATC Semitec 204GT-2", '-2': "Thermocouple + MAX6675 (only for sensor 0)", '-1': "Thermocouple + AD595", '3': "Mendel-parts / 4.7k", '1047': "Pt1000 / 4.7k", '1010': "Pt1000 / 1k (non standard)", '20': "PT100 (Ultimainboard V2.x)", '147': "Pt100 / 4.7k", '110': "Pt100 / 1k (non-standard)", '998': "Dummy 1", '999': "Dummy 2" }
-#define TEMP_SENSOR_0 99
+#define TEMP_SENSOR_0 5
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
-#define TEMP_SENSOR_BED 0
+#define TEMP_SENSOR_BED 5
 
 // This makes temp sensor 1 a redundant sensor for sensor 0. If the temperatures difference between these sensors is to high the print will be aborted.
 //#define TEMP_SENSOR_1_AS_REDUNDANT
@@ -129,11 +129,11 @@
 // When temperature exceeds max temp, your heater will be switched off.
 // This feature exists to protect your hotend from overheating accidentally, but *NOT* from thermistor short/failure!
 // You should use MINTEMP for thermistor short/failure protection.
-#define HEATER_0_MAXTEMP 260
+#define HEATER_0_MAXTEMP 250
 #define HEATER_1_MAXTEMP 260
 #define HEATER_2_MAXTEMP 260
 #define HEATER_3_MAXTEMP 260
-#define BED_MAXTEMP 150
+#define BED_MAXTEMP 110
 
 // If your bed has low resistance e.g. .6 ohm and throws the fuse you can duty cycle it to reduce the
 // average current. The value should be an integer and the heat bed will be turned on for 1 interval of
@@ -267,15 +267,15 @@ your extruder heater takes 2 minutes to hit the target on heating.
 // uncomment the 2 defines below:
 
 // Parameters for all extruder heaters
-//#define THERMAL_RUNAWAY_PROTECTION_PERIOD 40 //in seconds
-//#define THERMAL_RUNAWAY_PROTECTION_HYSTERESIS 4 // in degree Celsius
+#define THERMAL_RUNAWAY_PROTECTION_PERIOD 40 //in seconds
+#define THERMAL_RUNAWAY_PROTECTION_HYSTERESIS 6 // in degree Celsius
 
 // If you want to enable this feature for your bed heater,
 // uncomment the 2 defines below:
 
 // Parameters for the bed heater
-//#define THERMAL_RUNAWAY_PROTECTION_BED_PERIOD 20 //in seconds
-//#define THERMAL_RUNAWAY_PROTECTION_BED_HYSTERESIS 2 // in degree Celsius
+#define THERMAL_RUNAWAY_PROTECTION_BED_PERIOD 20 //in seconds
+#define THERMAL_RUNAWAY_PROTECTION_BED_HYSTERESIS 2 // in degree Celsius
 
 
 //===========================================================================
@@ -363,7 +363,7 @@ const bool Z_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the logic 
 #define X_MIN_POS 0
 #define Y_MAX_POS 210
 #define Y_MIN_POS 0
-#define Z_MAX_POS 200
+#define Z_MAX_POS 180
 #define Z_MIN_POS 0
 
 
@@ -468,7 +468,8 @@ const bool Z_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the logic 
 
 // default settings
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 1600, 102.073}  // default steps per unit for Ultimaker
+// #define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 1600, 102.073}  // default steps per unit for Ultimaker
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 1600, 92.071}  // default steps per unit for Ultimaker
 #define DEFAULT_MAX_ACCELERATION      {1000, 1000, 10, 1000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
 
 #ifndef PREFER_MAX_SPEED
@@ -542,19 +543,19 @@ const bool Z_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the logic 
 // M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).
 // M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
 //define this to enable EEPROM support
-//#define EEPROM_SETTINGS
+#define EEPROM_SETTINGS
 //to disable EEPROM Serial responses and decrease program space by ~1700 byte: comment this out:
 // please keep turned on if you can.
 //#define EEPROM_CHITCHAT
 
 // Preheat Constants
-#define PLA_PREHEAT_HOTEND_TEMP 200
-#define PLA_PREHEAT_HPB_TEMP 0
-#define PLA_PREHEAT_FAN_SPEED 255   // Insert Value between 0 and 255
+#define PLA_PREHEAT_HOTEND_TEMP 180
+#define PLA_PREHEAT_HPB_TEMP 60
+#define PLA_PREHEAT_FAN_SPEED 0   // Insert Value between 0 and 255
 
 #define ABS_PREHEAT_HOTEND_TEMP 220
 #define ABS_PREHEAT_HPB_TEMP 100
-#define ABS_PREHEAT_FAN_SPEED 255   // Insert Value between 0 and 255
+#define ABS_PREHEAT_FAN_SPEED 0   // Insert Value between 0 and 255
 
 // Extrusion control on pause/resume. Distances in mm.
 #define RETRACT_ON_PAUSE 4
