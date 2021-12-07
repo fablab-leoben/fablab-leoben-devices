@@ -1,0 +1,1 @@
+The sledge of Selma was redesigned to use a E3D v6 hotend that is more stable and easier to maintain.
